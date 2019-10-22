@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using Keepr.Models;
+using Keepr.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Keepr.Controllers
@@ -15,34 +16,20 @@ namespace Keepr.Controllers
     {
       _vks = vks;
     }
-
     [HttpPost]
     public ActionResult<VaultKeep> Create([FromBody] VaultKeep vaultKeep)
     {
       try
       {
         string userId = HttpContext.User.FindFirstValue("Id");
-        return Ok(_vks.Create(userId, vaultKeep));
-      }
-      catch (Exception e)
-      {
-
-        return BadRequest(e.Message);
-      }
-    }
-
-    [HttpGet("{vaultId")]
-    public ActionResult<IEnumerable<Keep>> Get(int vaultId)
-    {
-      try
-      {
-        string userId = HttpContext.User.FindFirstValue("Id");
-        return Ok(_vks.Get(userId, vaultId));
+        return Ok(_vks.Create(vaultKeep, userId));
       }
       catch (Exception e)
       {
         return BadRequest(e.Message);
       }
     }
+
+
   }
 }
