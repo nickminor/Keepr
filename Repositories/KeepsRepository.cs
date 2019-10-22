@@ -37,12 +37,13 @@ namespace Keepr.Repositories
     public void Edit(Keep Keep)
     {
       string sql = @"
-                UPDATE Keeps
+                UPDATE keeps
                 SET
                     name = @Name,
-                    description = @Description
+                    description = @Description,
                     img = @Img,
-                    isPrivate = @IsPrivate
+                    isPrivate = @IsPrivate,
+                    userId = @UserId
                 WHERE id = @Id";
       _db.Execute(sql, Keep);
     }
@@ -55,7 +56,7 @@ namespace Keepr.Repositories
 
     public void Delete(int id)
     {
-      string sql = "DELETE FROM keeps WHERE id = @id";
+      string sql = "DELETE FROM keeps WHERE id = @Id";
       _db.Execute(sql, new { id });
     }
   }
