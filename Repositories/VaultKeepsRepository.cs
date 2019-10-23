@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Data;
 using Dapper;
 using Keepr.Models;
@@ -21,6 +22,11 @@ namespace Keepr.Repositories
       (@UserId, @VaultId, @KeepId);
       SELECT LAST_INSERT_ID();";
       return _db.ExecuteScalar<int>(sql, vaultKeep);
+    }
+    public IEnumerable<VaultKeep> GetVaultKeeps(int vaultId)
+    {
+      string sql = "SELECT * FROM vaultkeeps";
+      return _db.Query<VaultKeep>(sql);
     }
   }
 }

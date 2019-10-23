@@ -29,6 +29,18 @@ namespace Keepr.Controllers
         return BadRequest(e.Message);
       }
     }
+    [HttpGet("{vaultId}")]
+    public ActionResult<IEnumerable<VaultKeep>> GetVaultKeeps(int vaultId)
+    {
+      try
+      {
+        return Ok(_vks.GetVaultKeeps(vaultId));
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
 
 
   }
