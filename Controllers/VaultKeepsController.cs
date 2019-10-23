@@ -41,6 +41,18 @@ namespace Keepr.Controllers
         return BadRequest(e.Message);
       }
     }
+    [HttpPut]
+    public ActionResult<VaultKeep> Delete([FromBody] VaultKeep vaultKeep)
+    {
+      try
+      {
+        return Ok(_vks.Delete(vaultKeep));
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
 
 
   }

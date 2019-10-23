@@ -23,5 +23,12 @@ namespace Keepr.Services
     {
       return _repo.GetVaultKeeps(vaultId);
     }
+    public string Delete(VaultKeep vaultKeep)
+    {
+      VaultKeep exists = _repo.GetVaultKeepId(vaultKeep.VaultId, vaultKeep.KeepId);
+      if (exists == null) { throw new Exception("Invalid ID yo"); }
+      _repo.Delete(exists.Id);
+      return "Vault keep's been delorted";
+    }
   }
 }

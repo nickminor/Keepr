@@ -28,5 +28,15 @@ namespace Keepr.Repositories
       string sql = "SELECT * FROM vaultkeeps";
       return _db.Query<VaultKeep>(sql);
     }
+    public VaultKeep GetVaultKeepId(int vaultId, int keepId)
+    {
+      string sql = "SELECT * FROM vaultkeeps WHERE vaultId =@VaultId AND keepId = @KeepId";
+      return _db.QueryFirstOrDefault<VaultKeep>(sql, new { vaultId, keepId });
+    }
+    public void Delete(int id)
+    {
+      string sql = "DELETE FROM vaultkeeps WHERE id = @Id";
+      _db.Execute(sql, new { id });
+    }
   }
 }
