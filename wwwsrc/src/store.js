@@ -4,6 +4,11 @@ import Axios from 'axios'
 import router from './router'
 import AuthService from './AuthService'
 
+//Store Modules
+import Keeps from '../src/store-modules/Keeps'
+import Vaults from '../src/store-modules/Vaults'
+import VaultKeeps from '../src/store-modules/VaultKeeps'
+
 Vue.use(Vuex)
 
 let baseUrl = location.host.includes('localhost') ? '//localhost:5000/' : '/'
@@ -15,6 +20,11 @@ let api = Axios.create({
 })
 
 export default new Vuex.Store({
+  modules: {
+    Keeps,
+    Vaults,
+    VaultKeeps
+  },
   state: {
     user: {}
   },
