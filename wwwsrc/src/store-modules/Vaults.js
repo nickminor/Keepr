@@ -34,9 +34,9 @@ export default {
 
   },
   actions: {
-    async createVault({ dispatch }, vault) {
+    async createVault({ dispatch }, newvault) {
       try {
-        let axiosRES = await api.post('', vault)
+        let axiosRES = await api.post('', newvault)
         let newVault = axiosRES.data
         dispatch('getVaults')
       } catch (error) {
@@ -74,9 +74,9 @@ export default {
       }
     },
 
-    async deleteVault({ commit, dispatch }, vault) {
+    async deleteVault({ commit, dispatch }, propvault) {
       try {
-        let vaultId = vault
+        let vaultId = propvault.id
         let endPoint = `${vaultId}`;
         await api.delete(endPoint);
         dispatch('getVaults')

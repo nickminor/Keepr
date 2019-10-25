@@ -4,9 +4,43 @@
     <button v-if="user.id" @click="logout">logout</button>
     <router-link v-else :to="{name: 'login'}">Login</router-link>
     <br />
+    <hr>
+    <div v-if="user.id!=null">
+    <div class="create-keep">
+      <div class="row offset-1">
+      <form @submit="createKeep">
+    Keep Name:<br>
+    <input type="text" name="Keepname" v-model="newkeep.name" value="">
+    <br>
+    Keep Description:
+    <br>
+    <input type="text" description="Keepdescription" v-model="newkeep.description" value="">
+    <br>
+    Keep img url:
+    <br>
+    <input type="text" img="Keepimgurl" v-model="newkeep.img"value="">
+    <br>
+    <input type="submit" value="Create Keep">
+</form>   
+</div>
+    </div>
+    <div class="create-vault">
+      <div class="row offset-1">
+      <form @submit="createVault">
+    Vault name:<br>
+    <input type="text" name="Vaultname" v-model="newvault.name" value="">
+    <br>
+     Vault description:<br>
+    <input type="text" name="Vaultname" v-model="newvault.description" value="">
+    <br>
+    <input type="submit" value="Create Vault">
+</form>   
+</div>
+    </div>
     <div class="row">
       <!-- <router-link to="{name: 'vaults/id'}"> -->
       <vault v-for="vault in vaults" :key="vault.id" :propvault="vault" />
+    </div>
       <!-- </router-link> -->
     </div>
     <div class="row">
@@ -30,9 +64,31 @@ export default {
       return this.$store.state.Vaults.vaults;
     }
   },
+  data() {
+    return {
+      newkeep: {
+        name: "",
+        description: "",
+        img: ""
+      },
+      newvault: {
+        name: "",
+        description: ""
+      }
+    }
+  },
   methods: {
     logout() {
       this.$store.dispatch("logout");
+    },
+    createKeep(){
+      let newkeep = this.newkeep;
+      this.$store.dispatch("createKeep", newkeep);
+
+    },
+    createVault(){
+      let newvault = this.newvault;
+      this.$store.dispatch("createVault", newvault);
     }
   },
   mounted() {

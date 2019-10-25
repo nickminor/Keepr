@@ -22,7 +22,8 @@ namespace Keepr.Controllers
     {
       try
       {
-        return Ok(_vs.Get());
+        var id = HttpContext.User.FindFirstValue("Id");
+        return Ok(_vs.GetVaultsByUserId(id));
       }
       catch (Exception e)
       {

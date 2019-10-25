@@ -2,6 +2,7 @@
   <div class="keeps container-fluid">
     <div class="row">
       <div class="col-4">
+        <button v-if="keep.userId == user.id" @click="deleteKeep(keep)" type="button" class="btn btn-danger">Delete Keep</button>
         <img class="keep-img" :src="keep.img" />
         <br />
         {{keep.name}}
@@ -37,6 +38,9 @@ export default {
     };
   },
   computed: {
+    user() {
+      return this.$store.state.user;
+    },
     vaults() {
       return this.$store.state.Vaults.vaults;
     }
@@ -49,6 +53,9 @@ export default {
         userId: ""
       };
       this.$store.dispatch("saveKeep", keepData);
+    },
+    deleteKeep(keep){
+      this.$store.dispatch("deleteKeep", keep);
     }
   }
 };

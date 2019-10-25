@@ -28,9 +28,9 @@ export default {
 
   },
   actions: {
-    async createKeep({ dispatch }, keep) {
+    async createKeep({ dispatch }, newkeep) {
       try {
-        let axiosRES = await api.post('', keep)
+        let axiosRES = await api.post('', newkeep)
         let newKeep = axiosRES.data
         dispatch('getKeeps')
       } catch (error) {
@@ -50,7 +50,7 @@ export default {
 
     async deleteKeep({ commit, dispatch }, keep) {
       try {
-        let keepId = keep
+        let keepId = keep.id
         let endPoint = `${keepId}`;
         await api.delete(endPoint);
         dispatch('getKeeps')

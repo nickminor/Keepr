@@ -7,6 +7,7 @@
         @click="viewVault()"
         class="btn btn-secondary"
       >View Vault</button>
+      <button @click="deleteVault(propvault)" type="button" class="btn btn-danger">Delete Vault</button>
     </div>
   </div>
 </template>
@@ -22,6 +23,9 @@ export default {
         name: "vaults",
         params: { id: this.propvault.id }
       });
+    },
+        deleteVault(propvault){
+      this.$store.dispatch("deleteVault", propvault);
     }
   }
 };
