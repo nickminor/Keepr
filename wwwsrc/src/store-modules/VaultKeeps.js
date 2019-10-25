@@ -50,9 +50,19 @@ export default {
     },
     async saveKeep({ commit, dispatch }, vaultkeep) {
       try {
-        let endpoint = "";
+        let endpoint = `${vaultkeep.vaultId}`;
+        let axiosRES = await api.get(endpoint);
+        let vaultkeeps = axiosRES.data;
+        let keep = vaultkeeps.find(vk => {
+          return vk.keepId == vaultkeep.keepId
+        });
+        if (keep) {
+          return
+        }
+
+        endpoint = "";
         await api.post(endpoint, vaultkeep);
-        dispatch('getVaultKeeps')
+        await dispatch('getVaultKeeps')
 
       } catch (error) {
         alert('store-module vaultkeep.js actions saveKeep()')

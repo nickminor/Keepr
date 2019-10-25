@@ -23,10 +23,10 @@ namespace Keepr.Repositories
       SELECT LAST_INSERT_ID();";
       return _db.ExecuteScalar<int>(sql, vaultKeep);
     }
-    public IEnumerable<Keep> GetVaultKeeps(int vaultId)
+    public IEnumerable<VaultKeep> GetVaultKeeps(int vaultId)
     {
-      string sql = "SELECT * FROM vaultkeeps";
-      return _db.Query<Keep>(sql, new { vaultId });
+      string sql = "SELECT * FROM vaultkeeps WHERE vaultId = @vaultId";
+      return _db.Query<VaultKeep>(sql, new { vaultId });
     }
     public VaultKeep GetVaultKeepId(int vaultId, int keepId)
     {

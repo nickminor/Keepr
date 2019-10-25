@@ -32,6 +32,10 @@ namespace Keepr.Services
       return exists;
 
     }
+    public IEnumerable<Keep> GetKeepsByVaultId(int vaultId, string userId)
+    {
+      return _repo.GetKeepsByVaultId(vaultId, userId);
+    }
     internal object GetVaultById(int id)
     {
       Vault exists = _repo.GetVaultById(id);

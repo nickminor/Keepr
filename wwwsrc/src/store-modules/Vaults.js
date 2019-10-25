@@ -18,7 +18,8 @@ function err(storeSection, functionName) {
 export default {
   state: {
     vaults: [],
-    activevault: {}
+    activevault: {},
+    vaultkeeps: []
   },
   mutations: {
     setVaults(state, vaults) {
@@ -26,6 +27,9 @@ export default {
     },
     setactiveVault(state, activevault) {
       state.activevault = activevault;
+    },
+    setKeepsByVaultId(state, vaultkeeps) {
+      state.vaultkeeps = vaultkeeps;
     }
 
   },
@@ -57,6 +61,16 @@ export default {
       }
       catch (error) {
         console.error(error)
+      }
+    },
+    async getKeepsByVaultId({ commit }, vaultId) {
+      try {
+        let endpoint = `${vaultId}/keeps`;
+        let axiosRES = await api.get(endpoint);
+        commit('setKeepsByVaultId', axiosRES.data);
+      } catch (error) {
+        console.error(error)
+
       }
     },
 
