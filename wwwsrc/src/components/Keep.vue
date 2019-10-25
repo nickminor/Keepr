@@ -8,8 +8,10 @@
         <br />
         {{keep.description}}
         <br />
-        <button type="button" class="btn btn-secondary">Save</button>
-        <div class="div"></div>
+        <button type="button" class="btn btn-primary">View Keep</button>
+        <select @change="saveKeep()" v-model="newVaultId">
+          <option v-for="vault in vaults" :value="vault.id" :key="vault.id">{{vault.name}}</option>
+        </select>
       </div>
     </div>
     <br />
@@ -25,6 +27,29 @@ export default {
       type: Object,
       required: true
     }
+  },
+  data() {
+    return {
+      newVaultId: "",
+      newKeep: {
+        description: ""
+      }
+    };
+  },
+  computed: {
+    vaults() {
+      return this.$store.state.Vaults.vaults;
+    }
+  },
+  methods: {
+    saveKeep() {
+      let keepData = {
+        keepId: this.keep.id,
+        vaultId: this.newVaultId,
+        userId: ""
+      };
+      this.$store.dispatch("saveKeep", keepData);
+    }
   }
 };
 </script>
@@ -34,5 +59,4 @@ export default {
 .keep-img {
   max-width: 2in;
 }
-
 </style>

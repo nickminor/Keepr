@@ -19,7 +19,7 @@ namespace Keepr.Services
       newVaultKeep.Id = id;
       return newVaultKeep;
     }
-    public IEnumerable<VaultKeep> GetVaultKeeps(int vaultId)
+    public IEnumerable<Keep> GetVaultKeeps(int vaultId)
     {
       return _repo.GetVaultKeeps(vaultId);
     }

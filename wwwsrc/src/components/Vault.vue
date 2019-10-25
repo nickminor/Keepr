@@ -1,22 +1,27 @@
 <template>
   <div class="vault">
     <div class="row m-5">
-      
-      {{vault.name}}
+      {{propvault.name}}
+      <button
+        type="button"
+        @click="viewVault()"
+        class="btn btn-secondary"
+      >View Vault</button>
     </div>
-
-
   </div>
 </template>
 
 
 <script>
 export default {
-  name: 'vault',
-  props: {
-    vault: {
-      type: Object,
-      required: true
+  name: "vault",
+  props: ["propvault"],
+  methods: {
+    viewVault() {
+      this.$router.push({
+        name: "vaults",
+        params: { id: this.propvault.id }
+      });
     }
   }
 };
@@ -24,5 +29,4 @@ export default {
 
 
 <style scoped>
-
 </style>

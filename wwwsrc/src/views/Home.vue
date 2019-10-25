@@ -5,11 +5,12 @@
     <router-link v-else :to="{name: 'login'}">Login</router-link>
     <br />
     <div class="row">
-      <vault v-for="vault in vaults" :key="vault.id" :vault="vault"/>
-      </div>
-      <div class="row"> 
-      <keep v-for="keep in keeps" :key="keep.id" :keep="keep" />
+      <!-- <router-link to="{name: 'vaults/id'}"> -->
+      <vault v-for="vault in vaults" :key="vault.id" :propvault="vault" />
+      <!-- </router-link> -->
     </div>
+    <div class="row">
+      <keep v-for="keep in keeps" :key="keep.id" :keep="keep" />
     </div>
   </div>
 </template>

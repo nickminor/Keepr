@@ -17,11 +17,15 @@ function err(storeSection, functionName) {
 }
 export default {
   state: {
-    vaults: []
+    vaults: [],
+    activevault: {}
   },
   mutations: {
     setVaults(state, vaults) {
       state.vaults = vaults;
+    },
+    setactiveVault(state, activevault) {
+      state.activevault = activevault;
     }
 
   },
@@ -43,6 +47,16 @@ export default {
         commit('setVaults', vaults)
       } catch (error) {
         console.error(err('actions', 'getVaults'))
+      }
+    },
+    async getVaultById({ commit, dispatch }, payload) {
+      try {
+        let endpoint = `${payload}`;
+        let axiosRES = await api.get(endpoint)
+        commit('setactiveVault', axiosRES.data)
+      }
+      catch (error) {
+        console.error(error)
       }
     },
 
