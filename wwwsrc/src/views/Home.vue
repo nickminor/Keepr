@@ -44,12 +44,23 @@
       <!-- </router-link> -->
     </div>
     <div class="row">
-      <keep v-for="keep in keeps" :key="keep.id" :keep="keep" />
+      <stack
+        :monitor-images-loaded="true"
+        :column-min-width="320"
+        :gutter-width="8"
+        :gutter-height="8"
+      >
+        <stack-item v-for="keep in keeps" :key="keep.id" :keep="keep">
+          <keep :keep="keep" />
+        </stack-item>
+      </stack>
     </div>
   </div>
 </template>
 
 <script>
+import { Stack, StackItem } from "vue-stack-grid";
+
 export default {
   name: "home",
   computed: {
@@ -63,6 +74,10 @@ export default {
     vaults() {
       return this.$store.state.Vaults.vaults;
     }
+  },
+  components: {
+    Stack,
+    StackItem
   },
   data() {
     return {
