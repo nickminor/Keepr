@@ -24,7 +24,7 @@ export default {
         params: { id: this.propvault.id }
       });
     },
-        deleteVault(propvault){
+    deleteVault(propvault) {
       this.$store.dispatch("deleteVault", propvault);
     }
   }

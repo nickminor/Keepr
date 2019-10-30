@@ -3,7 +3,7 @@
     <h1>{{activevault.name}}</h1>
     <div v-for="keep in vaultkeeps" :key="'vault-keep-'+keep.id">
       <h3>{{keep.name}}</h3>
-      <img :src="keep.img" alt="">
+      <img class="keep-img" :src="keep.img" alt />
       <h4>{{keep.description}}</h4>
       <div>keep count: {{keep.keeps}}</div>
       <div>keep views: {{keep.views}}</div>
@@ -35,4 +35,7 @@ export default {
 
 
 <style scoped>
+.keep-img {
+  max-width: 2in;
+}
 </style>
